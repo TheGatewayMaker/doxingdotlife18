@@ -258,9 +258,10 @@ export default function UppostPanel() {
 
                 <button
                   type="submit"
-                  className="w-full px-4 py-3 bg-accent text-accent-foreground font-bold rounded-lg hover:bg-accent/90 active:scale-95 transition-all shadow-md hover:shadow-lg"
+                  disabled={isLoggingIn}
+                  className="w-full px-4 py-3 bg-accent text-accent-foreground font-bold rounded-lg hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 transition-all shadow-md hover:shadow-lg"
                 >
-                  Login to Dashboard
+                  {isLoggingIn ? "Logging in..." : "Login to Dashboard"}
                 </button>
               </form>
             </div>
