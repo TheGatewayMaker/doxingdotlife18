@@ -427,20 +427,20 @@ export default function Index() {
 
       <main className="flex-1 w-full">
         {/* Hero Section */}
-        <div className="bg-gradient-to-br from-background via-card/50 to-background pt-12 pb-8 md:pt-20 md:pb-16 border-b border-border/50">
-          <div className="max-w-5xl mx-auto px-4">
+        <div className="bg-gradient-to-br from-background via-card/50 to-background pt-8 pb-8 md:pt-16 md:pb-12 border-b border-border/50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="animate-fadeIn" style={{ animationDelay: "0.1s" }}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 text-foreground tracking-tighter leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 text-foreground tracking-tighter leading-tight">
                 🔍 Doxing Dot Life
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-8 max-w-3xl">
+              <p className="text-base sm:text-lg md:text-xl font-semibold text-muted-foreground mb-6 max-w-2xl">
                 Find if you or someone you know have been Doxed
               </p>
             </div>
 
             {/* Search Bar */}
             <div
-              className="relative mb-10 animate-fadeIn"
+              className="relative mb-8 animate-fadeIn"
               style={{ animationDelay: "0.2s" }}
             >
               <input
@@ -448,9 +448,9 @@ export default function Index() {
                 placeholder="Search for individuals..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-card border-2 border-border hover:border-accent/50 rounded-xl text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent text-base sm:text-lg transition-all shadow-md hover:shadow-lg"
+                className="w-full px-4 sm:px-5 py-3 sm:py-3.5 bg-card border-2 border-border hover:border-accent/50 rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent text-sm sm:text-base transition-all shadow-md hover:shadow-lg"
               />
-              <SearchIcon className="absolute right-4 sm:right-5 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground pointer-events-none" />
+              <SearchIcon className="absolute right-4 sm:right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
             </div>
 
             {/* Categories Section */}
@@ -458,13 +458,13 @@ export default function Index() {
               className="mb-0 animate-fadeIn"
               style={{ animationDelay: "0.3s" }}
             >
-              <div className="flex items-center gap-2 mb-6">
-                <FilterIcon className="w-5 h-5 text-accent" />
-                <h3 className="text-sm font-black text-foreground uppercase tracking-widest">
+              <div className="flex items-center gap-2 mb-5">
+                <FilterIcon className="w-4 h-4 text-accent" />
+                <h3 className="text-xs font-black text-foreground uppercase tracking-widest">
                   Filter by Category
                 </h3>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {/* Country Dropdown */}
                 <div className="relative group">
                   <label className="text-sm font-bold text-foreground block mb-3 flex items-center gap-2">
@@ -623,8 +623,8 @@ export default function Index() {
         </div>
 
         {/* Hot & Recent Posts */}
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="mb-12 animate-fadeIn">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="mb-10 sm:mb-12 animate-fadeIn">
             {isLoadingPosts ? (
               <>
                 <h2 className="text-5xl md:text-6xl font-black mb-3 flex items-center gap-3">
@@ -666,7 +666,7 @@ export default function Index() {
 
           {displayedPosts.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 mb-10 sm:mb-12">
                 {displayedPosts.map((post, idx) => (
                   <div
                     key={post.id}

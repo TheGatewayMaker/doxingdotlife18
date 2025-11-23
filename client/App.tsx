@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import UppostPanel from "./pages/UppostPanel";
 import PostDetail from "./pages/PostDetail";
+import DoxAnyone from "./pages/DoxAnyone";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const AppContent = () => {
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/post/:postId" element={<PostDetail />} />
+      <Route path="/dox-anyone" element={<DoxAnyone />} />
       <Route path="/uppostpanel" element={<UppostPanel />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
