@@ -18,16 +18,33 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Check if Firebase config is valid
+const isFirebaseConfigValid = Object.values(firebaseConfig).every(
+  (val) => val && val !== undefined && val !== "",
+);
 
-// Initialize Firebase Auth
-export const auth: Auth = getAuth(app);
+let app: any;
+let auth: Auth | null = null;
+let googleProvider: GoogleAuthProvider | null = null;
 
-// Initialize Google Auth Provider
-const googleProvider = new GoogleAuthProvider();
-googleProvider.addScope("profile");
-googleProvider.addScope("email");
+if (isFirebaseConfigValid) {
+  try {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+
+    googleProvider = new GoogleAuthProvider();
+    googleProvider.addScope("profile");
+    googleProvider.addScope("email");
+  } catch (error) {
+    console.error("Firebase initialization error:", error);
+    auth = null;
+    googleProvider = null;
+  }
+} else {
+  console.warn(
+    "Firebase configuration is incomplete. Some features will be disabled. Please set all VITE_FIREBASE_* environment variables.",
+  );
+}
 
 // Authorized email domains/accounts
 const AUTHORIZED_EMAILS = import.meta.env.VITE_AUTHORIZED_EMAILS
@@ -41,6 +58,12 @@ const AUTHORIZED_EMAILS = import.meta.env.VITE_AUTHORIZED_EMAILS
  * Returns user data if successful, throws error if email is not authorized
  */
 export const signInWithGoogle = async (): Promise<User> => {
+  if (!auth || !googleProvider) {
+    throw new Error(
+      "Firebase authentication is not configured. Please set up Firebase environment variables.",
+    );
+  }
+
   try {
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
@@ -70,6 +93,10 @@ export const signInWithGoogle = async (): Promise<User> => {
  * Sign out the current user
  */
 export const signOutUser = async (): Promise<void> => {
+  if (!auth) {
+    throw new Error("Firebase authentication is not configured.");
+  }
+
   try {
     await signOut(auth);
   } catch (error) {
@@ -102,6 +129,11 @@ export const isEmailAuthorized = (email: string): boolean => {
  * Get Firebase ID token for backend verification
  */
 export const getIdToken = async (): Promise<string | null> => {
+  if (!auth) {
+    console.warn("Firebase authentication is not configured.");
+    return null;
+  }
+
   try {
     const user = auth.currentUser;
     if (!user) return null;
@@ -111,3 +143,8 @@ export const getIdToken = async (): Promise<string | null> => {
     return null;
   }
 };
+
+/**
+ * Export auth instance (may be null if Firebase is not configured)
+ */
+export { auth };
