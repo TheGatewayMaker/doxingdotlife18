@@ -305,15 +305,6 @@ export default function SimpleMediaGallery({
 
             {/* Action Buttons */}
             <div className="flex gap-3 flex-wrap">
-              {isVideo && (
-                <button
-                  onClick={handleFullscreen}
-                  className="flex-1 min-w-[120px] px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all flex items-center justify-center gap-2"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                  Fullscreen
-                </button>
-              )}
               <button
                 onClick={handleOpenNewTab}
                 className="flex-1 min-w-[120px] px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-lg hover:bg-accent/90 transition-all"
