@@ -510,7 +510,7 @@ export default function UppostPanel() {
               <label className="block text-sm font-bold mb-3 text-foreground">
                 Media Files <span className="text-destructive">*</span>
               </label>
-              <div className="border-2 border-dashed border-border rounded-xl p-10 text-center cursor-pointer hover:border-accent hover:bg-accent/5 transition-all">
+              <div className="border-2 border-dashed border-border/70 rounded-2xl p-10 text-center cursor-pointer hover:border-accent/70 hover:bg-accent/10 bg-background/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10">
                 <input
                   type="file"
                   onChange={handleMediaChange}
